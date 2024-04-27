@@ -1,0 +1,115 @@
+<app-header [isModal]="true " [title]="product ? 'Actualizar Producto' : 'Datos personales'"></app-header>
+<ion-content class="ion-padding">
+    <form (ngSubmit)="submitForm()">
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input type="text" [(ngModel)]="nombre" name="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Código de ingreso</ion-label>
+        <ion-input type="text" [(ngModel)]="codigoIngreso" name="codigoIngreso"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Color de automóvil</ion-label>
+        <ion-input type="text" [(ngModel)]="colorAutomovil" name="colorAutomovil"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Número de placa</ion-label>
+        <ion-input type="text" [(ngModel)]="numeroPlaca" name="numeroPlaca"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Hora de entrada</ion-label>
+        <ion-input type="time" [(ngModel)]="horaEntrada" name="horaEntrada"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Hora de salida</ion-label>
+        <ion-input type="time" [(ngModel)]="horaSalida" name="horaSalida"></ion-input>
+      </ion-item>
+      
+    </form>
+  </ion-content>
+<ion-content>
+
+    <form [formGroup]="form" class="ion-padding ion-text-center" (ngSubmit)="submit()" (keypress.enter)="submit()">
+
+        <ion-avatar *ngIf="form.value.image">
+            <img [src]="form.value.image" />
+        </ion-avatar>
+
+        <!-- ======== si no existe una imagen ========-->
+         <ion-icon class="image-icon" *ngIf="!form.value.image" name="image-outline"></ion-icon>
+
+        <br>
+
+        <!-- ======== Tomar/Seleccionar Imagen ========-->
+        <ion-button color="warning"(click)="takeImage()" mode="ios" size="small" shape="round">
+            Tomar/Seleccionar
+        </ion-button>
+
+        
+
+        <!-- <?--================Name======================-> -->
+            <!-- <app-custom-input
+            autocomplete="name"
+            [control]="form.controls.name"
+            type="text"
+            label="Nombre"
+        ></app-custom-input>
+
+        <div class="validators" *ngIf="form.controls.name.errors && form.controls.name.touched">
+            <div *ngIf="form.controls.name.errors?.['required']">El campo es requerido</div>
+            <div *ngIf="form.controls.name.errors?.['minlenght']">El nombre debe tener al menos 4 caracteres</div>
+        </div> -->
+
+        <!-- <?--================Price======================-> -->
+        <!-- <app-custom-input
+        [control]="form.controls.price"
+        type="number"
+        label="Precio"
+        (ionInput) = "setNumberInputs()"
+        ></app-custom-input>
+
+        <div class="validators" *ngIf="form.controls.price.errors && form.controls.price.touched">
+        <div *ngIf="form.controls.price.errors?.['required']">El campo es requerido</div>
+        <div *ngIf="form.controls.price.errors?.['min']">El precio minimo debe ser 0</div>
+        </div> -->
+
+        <!-- <?--================Sold Units======================-> -->
+        <!-- <app-custom-input
+        [control]="form.controls. soldUnits"
+        type="number"
+        label="Unidades Vendidas"
+        (ionInput) = "setNumberInputs()"
+        ></app-custom-input> -->
+
+        <!-- <div class="validators" *ngIf="form.controls. soldUnits.errors && form.controls. soldUnits.touched">
+        <div *ngIf="form.controls. soldUnits.errors?.['required']">El campo es requerido</div>
+        <div *ngIf="form.controls. soldUnits.errors?.['min']">La cantidad minima debe ser 0</div>
+        </div> -->
+
+
+
+            <!-- <ion-button mode="ios" class="ion-margir" type="submit" [disabled]="form.invalid">
+                {{product ? 'Actualizar Producto' : 'Agregar Producto'}}
+                <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+            </ion-button> -->
+
+         <!-- Botón para generar el PDF -->
+
+         <ion-button color="warning" expand="block" type="submit">Enviar</ion-button>
+
+
+
+
+         <ion-button color="warning" mode="ios" (click)="generatePDF()" shape="round">
+            Generar PDF
+        </ion-button>
+
+
+
+        
+     
+
+    </form>
+
+</ion-content>
